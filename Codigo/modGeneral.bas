@@ -423,7 +423,7 @@ If Year(Now) > 2012 Or GetSetting("MAP", "EDITOR", "START", 1) = 5 Then
 '    End
 End If
 
-If FileExist(IniPath & "WorldEditor.jpg", vbArchive) Then frmCargando.picture1.Picture = LoadPicture(IniPath & "WorldEditor.jpg")
+If FileExist(IniPath & "WorldEditor.jpg", vbArchive) Then frmCargando.Picture1.Picture = LoadPicture(IniPath & "WorldEditor.jpg")
 frmCargando.verX = "v" & App.Major & "." & App.Minor & "." & App.Revision
 frmCargando.Show
 frmCargando.SetFocus
@@ -540,7 +540,7 @@ On Error Resume Next
 
     Next i
     
-frmMain.PintarMapa
+frmMain.PintarMapaZona
 End Sub
 
 Sub CargarAreas()
@@ -592,7 +592,7 @@ Next i
     Next i
     End If
 
-frmMain.PintarMapa
+frmMain.PintarMapaArea
 End Sub
 Sub CrearNPC(NPCIndex As Integer, Area As Integer)
 Dim Encuentra As Boolean

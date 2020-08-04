@@ -43,7 +43,7 @@ Begin VB.Form frmAbout
    Begin VB.Label lblCred 
       Alignment       =   2  'Center
       BackColor       =   &H00000000&
-      Caption         =   "Mejoras por:                       About, Loopzer, Salvito"
+      Caption         =   "Mejoras por:                           About, Loopzer, Salvito         Ultima Modificacion by ReyarB"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   9
@@ -54,7 +54,7 @@ Begin VB.Form frmAbout
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H000000FF&
-      Height          =   600
+      Height          =   720
       Index           =   1
       Left            =   720
       TabIndex        =   7
