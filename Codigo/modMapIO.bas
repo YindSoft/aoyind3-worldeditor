@@ -103,12 +103,12 @@ Public Sub GuardarMapa(Optional Path As String)
 'Last modified: 01/11/08
 '*************************************************
 
-frmMain.Dialog.CancelError = True
+frmMain.Dialog2.CancelError = True
 On Error GoTo ErrHandler
 
 If LenB(Path) = 0 Then
     frmMain.ObtenerNombreArchivo True
-    Path = frmMain.Dialog.FileName
+    Path = frmMain.Dialog2.FileName
     If LenB(Path) = 0 Then Exit Sub
 End If
 
@@ -179,9 +179,9 @@ For Y = YMinMapSize To YMaxMapSize
         MapData(X, Y).Graphic(4).grhindex = 0
 
         ' NPCs
-        If MapData(X, Y).NpcIndex > 0 Then
+        If MapData(X, Y).NPCIndex > 0 Then
             EraseChar MapData(X, Y).CharIndex
-            MapData(X, Y).NpcIndex = 0
+            MapData(X, Y).NPCIndex = 0
         End If
 
         ' OBJs
@@ -329,7 +329,7 @@ Seek FreeFileInf, 1
                 ByFlags = 0
                 
                 If MapData(X, Y).TileExit.map Then ByFlags = ByFlags Or 1
-                If MapData(X, Y).NpcIndex Then ByFlags = ByFlags Or 2
+                If MapData(X, Y).NPCIndex Then ByFlags = ByFlags Or 2
                 If MapData(X, Y).OBJInfo.OBJIndex Then ByFlags = ByFlags Or 4
                 
                 Put FreeFileInf, , ByFlags
@@ -340,9 +340,9 @@ Seek FreeFileInf, 1
                     Put FreeFileInf, , MapData(X, Y).TileExit.Y
                 End If
                 
-                If MapData(X, Y).NpcIndex Then
+                If MapData(X, Y).NPCIndex Then
                 
-                    Put FreeFileInf, , CInt(MapData(X, Y).NpcIndex)
+                    Put FreeFileInf, , CInt(MapData(X, Y).NPCIndex)
                 End If
                 
                 If MapData(X, Y).OBJInfo.OBJIndex Then
@@ -469,7 +469,7 @@ On Error GoTo ErrorSave
             Put FreeFileInf, , MapData(X, Y).TileExit.Y
             
             'NPC
-            Put FreeFileInf, , MapData(X, Y).NpcIndex
+            Put FreeFileInf, , MapData(X, Y).NPCIndex
             
             'Object
             Put FreeFileInf, , MapData(X, Y).OBJInfo.OBJIndex
@@ -614,14 +614,14 @@ On Error Resume Next
     
             If ByFlags And 2 Then
                 'Get and make NPC
-                Get FreeFileInf, , MapData(X, Y).NpcIndex
+                Get FreeFileInf, , MapData(X, Y).NPCIndex
     
-                If MapData(X, Y).NpcIndex < 0 Then
-                    MapData(X, Y).NpcIndex = 0
+                If MapData(X, Y).NPCIndex < 0 Then
+                    MapData(X, Y).NPCIndex = 0
                 Else
-                    Body = NpcData(MapData(X, Y).NpcIndex).Body
-                    Head = NpcData(MapData(X, Y).NpcIndex).Head
-                    Heading = NpcData(MapData(X, Y).NpcIndex).Heading
+                    Body = NpcData(MapData(X, Y).NPCIndex).Body
+                    Head = NpcData(MapData(X, Y).NPCIndex).Head
+                    Heading = NpcData(MapData(X, Y).NPCIndex).Heading
                     Call MakeChar(NextOpenChar(), Body, Head, Heading, X, Y)
                 End If
             End If
@@ -741,11 +741,11 @@ Public Sub MapaV1_Cargar(ByVal map As String)
             Get FreeFileInf, , MapData(X, Y).TileExit.Y
                           
             'make NPC
-            Get FreeFileInf, , MapData(X, Y).NpcIndex
-            If MapData(X, Y).NpcIndex > 0 Then
-                Body = NpcData(MapData(X, Y).NpcIndex).Body
-                Head = NpcData(MapData(X, Y).NpcIndex).Head
-                Heading = NpcData(MapData(X, Y).NpcIndex).Heading
+            Get FreeFileInf, , MapData(X, Y).NPCIndex
+            If MapData(X, Y).NPCIndex > 0 Then
+                Body = NpcData(MapData(X, Y).NPCIndex).Body
+                Head = NpcData(MapData(X, Y).NPCIndex).Head
+                Heading = NpcData(MapData(X, Y).NPCIndex).Heading
                 Call MakeChar(NextOpenChar(), Body, Head, Heading, X, Y)
             End If
             
